@@ -105,6 +105,16 @@ describe("validateConfig", () => {
     expect(() => validateConfig(bad)).toThrow(/photo credits/);
   });
 
+  it("keeps the credits page while home shows photos without inline credits", async () => {
+    const { validateConfig } = await loadConfig();
+    const noCreditsPage = { ...features.pages, credits: false };
+    const bad = { navigation, theme, features: { ...features, pages: noCreditsPage } };
+    expect(() => validateConfig(bad)).toThrow(/uncredited photos/);
+    // Without the index and the wildlife cards, inline credits alone are enough.
+    const home = { ...features.home, explore: false, wildlife: false };
+    expect(() => validateConfig({ navigation, theme, features: { ...features, home, pages: noCreditsPage } })).not.toThrow();
+  });
+
   it("rejects a non-positive motion speed", async () => {
     const { validateConfig } = await loadConfig();
     expect(() => validateConfig({ navigation, features, theme: { ...theme, motion: { ...theme.motion, speed: 0 } } })).toThrow(
@@ -122,6 +132,15 @@ describe("navigation helpers", () => {
     expect(mod.nextPage(order.at(-1)!)).toBeNull();
     expect(mod.href("thingsToDo")).toBe("/things-to-do");
     expect(mod.enabledPages()).toContain("home");
+  });
+
+  it("find each page's footer group for the home forest path signposts", async () => {
+    const mod = await loadConfig();
+    for (const { group, pages } of navigation.footer) {
+      for (const key of pages) expect(mod.pageGroup(key)).toBe(group);
+    }
+    // Pages in no footer column (home) have no signpost.
+    expect(mod.pageGroup("home")).toBeNull();
   });
 
   it("drop a disabled page from menus, the reading order and the sitemap", async () => {

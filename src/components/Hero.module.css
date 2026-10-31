@@ -125,6 +125,25 @@
   }
 }
 
+/* With reduced motion, show the opening at once. The global 1ms rule is not enough here:
+   with fill "both", the text sits at opacity 0 until the first animation frame, which a
+   busy main thread can delay. */
+@media (prefers-reduced-motion: reduce) {
+  .local > span[aria-hidden],
+  .latin,
+  .summary,
+  .actions {
+    animation: none;
+  }
+}
+
+:global(:root[data-motion="off"]) .local > span[aria-hidden],
+:global(:root[data-motion="off"]) .latin,
+:global(:root[data-motion="off"]) .summary,
+:global(:root[data-motion="off"]) .actions {
+  animation: none;
+}
+
 .credit {
   position: absolute;
   right: var(--gutter);

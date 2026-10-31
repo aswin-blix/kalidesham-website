@@ -7,6 +7,7 @@ import { theme } from "./theme.config";
 
 export { mapsUrl } from "./site.config";
 export type { PageKey } from "./routes";
+export { anchors } from "./routes";
 
 export const config = { site: siteConfig, theme, features, navigation, routes } as const;
 
@@ -29,6 +30,9 @@ export const footerGroups = () =>
   navigation.footer.map((g) => ({ ...g, pages: enabled(g.pages) })).filter((g) => g.pages.length > 0);
 
 export const orderedPages = () => enabled(navigation.pageOrder);
+
+/** The footer group a page belongs to (used as signposts on the home forest path), or null. */
+export const pageGroup = (key: PageKey) => navigation.footer.find((g) => g.pages.includes(key))?.group ?? null;
 
 /** The page after `key` in the reading order, skipping disabled pages. */
 export function nextPage(key: PageKey): PageKey | null {
@@ -56,6 +60,10 @@ export function validateConfig(c: { navigation: typeof navigation; features: typ
   }
   if (!c.features.inlinePhotoCredits && !c.features.pages.credits) {
     problems.push("photo credits must be shown somewhere: enable features.inlinePhotoCredits or the credits page");
+  }
+  // The home page index and wildlife cards show photos without an inline credit line.
+  if ((c.features.home.explore || c.features.home.wildlife) && !c.features.pages.credits) {
+    problems.push("the home page index and wildlife cards show uncredited photos: keep features.pages.credits on");
   }
   if (!(c.theme.motion.speed > 0)) problems.push("theme.motion.speed must be greater than 0");
   if (problems.length) throw new Error(`Invalid site configuration:\n- ${problems.join("\n- ")}`);

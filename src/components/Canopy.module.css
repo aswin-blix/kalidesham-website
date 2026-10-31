@@ -1,0 +1,29 @@
+/* The parent section must be `position: relative`. */
+.canopy {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: clamp(3rem, 2rem + 6vw, 8rem);
+  pointer-events: none;
+}
+
+.canopy[data-edge="top"] {
+  bottom: calc(100% - 1px);
+}
+
+.canopy[data-edge="bottom"] {
+  top: calc(100% - 1px);
+  transform: scaleY(-1);
+}
+
+.back {
+  fill: var(--color-dark-line);
+}
+
+.mid {
+  fill: var(--color-dark-raised);
+}
+
+.front {
+  fill: var(--color-dark);
+}

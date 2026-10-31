@@ -1,5 +1,5 @@
 import { expect, test, type Page } from "@playwright/test";
-import { enabledPages, href, nextPage, orderedPages } from "@/config";
+import { anchors, config, enabledPages, href, isPageEnabled, nextPage, orderedPages, pageGroup } from "@/config";
 import { siteConfig } from "@/config/site.config";
 import { content, imageText } from "@/content";
 import { images } from "@/content/images";
@@ -111,7 +111,8 @@ test.describe("navigation", () => {
 
   test("the home index links to every page in reading order", async ({ page }) => {
     await page.goto("/");
-    const links = page.locator("#explore ul a");
+    // One link per stop, whichever style (forest path or list) the home page uses.
+    const links = page.locator("#explore li a");
     await expect(links).toHaveCount(orderedPages().length);
     await expect(links.first()).toHaveAttribute("href", href(orderedPages()[0]));
   });
@@ -183,6 +184,55 @@ test.describe("interactions", () => {
     });
     await expect(markers.first()).toHaveAttribute("data-reached", "true");
     await expect(markers.last()).toHaveAttribute("data-reached", "true");
+  });
+
+  test("the forest path draws and lights its stops on the home page", async ({ page }) => {
+    const { home } = config.features;
+    const { motion } = config.theme;
+    test.skip(!home.explore || home.exploreStyle !== "trail", "home index is not the forest path");
+    test.skip(!motion.enabled || !motion.trail, "path animation switched off in the theme");
+    await page.goto("/");
+    const trail = page.locator("#explore");
+    const markers = trail.locator("[data-river-marker]");
+    await expect(markers).toHaveCount(orderedPages().length);
+    // A signpost wherever the path enters a new group of pages.
+    const groups = orderedPages()
+      .map(pageGroup)
+      .filter((g, i, all) => g && g !== all[i - 1]);
+    expect(groups.length).toBeGreaterThan(0);
+    for (const group of groups) await expect(trail.getByText(ui.footerGroups[group!], { exact: true })).toHaveCount(1);
+    await trail.scrollIntoViewIfNeeded();
+    await expect(trail.locator('svg path[data-ready="true"]')).toHaveCount(1);
+    await page.evaluate(() => {
+      const box = document.getElementById("explore")!.getBoundingClientRect();
+      window.scrollTo(0, window.scrollY + box.bottom - window.innerHeight * 0.3);
+    });
+    await expect(markers.first()).toHaveAttribute("data-reached", "true");
+    await expect(markers.last()).toHaveAttribute("data-reached", "true");
+  });
+
+  test("a forest path stop opens its page from the photo as well as the title", async ({ page }) => {
+    const { home } = config.features;
+    test.skip(!home.explore || home.exploreStyle !== "trail", "home index is not the forest path");
+    await page.goto("/");
+    const stop = page.locator("#explore article").nth(1);
+    await stop.scrollIntoViewIfNeeded();
+    // Let the scroll-driven rise finish, then click the middle of the photo.
+    await page.waitForTimeout(300);
+    const photo = stop.locator("[aria-hidden] img").first();
+    const box = (await photo.boundingBox())!;
+    await page.mouse.click(box.x + box.width / 2, box.y + box.height / 2);
+    await expect(page).toHaveURL(new RegExp(`${href(orderedPages()[1])}$`));
+  });
+
+  test("home wildlife cards lead to the field guide", async ({ page }) => {
+    test.skip(!config.features.home.wildlife || !isPageEnabled("wildlife"), "wildlife cards switched off");
+    await page.goto("/");
+    const cards = page.locator("#wildlife li a");
+    await expect(cards).toHaveCount(content.wildlife.guide.species.length);
+    await cards.first().click();
+    await expect(page).toHaveURL(new RegExp(`${href("wildlife")}#${anchors.fieldGuide}$`));
+    await expect(page.locator(`#${anchors.fieldGuide}`)).toBeInViewport();
   });
 
   test("the home hero links straight to the journey", async ({ page }) => {

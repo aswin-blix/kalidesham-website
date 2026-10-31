@@ -1,0 +1,107 @@
+.section {
+  background: var(--color-light);
+}
+
+.head {
+  max-width: 40rem;
+}
+
+/* Six tall cards in a row on wide screens; a swipeable row on phones. */
+.cards {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: clamp(0.6rem, 0.3rem + 1vw, 1.1rem);
+}
+
+.item {
+  /* Stagger like trunks in a forest. */
+  translate: 0 var(--offset, 0);
+}
+
+.item:nth-child(even) {
+  --offset: 1.75rem;
+}
+
+.card {
+  position: relative;
+  display: block;
+  aspect-ratio: 3 / 4.4;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: var(--color-dark-raised);
+  text-decoration: none;
+}
+
+.photo {
+  position: absolute;
+  inset: 0;
+}
+
+.photo img {
+  object-fit: cover;
+  transition: transform 600ms var(--ease-out);
+}
+
+.caption {
+  position: absolute;
+  inset: auto 0 0;
+  display: grid;
+  gap: 0.15rem;
+  padding: 3rem 0.9rem 0.9rem;
+  background: linear-gradient(to top, color-mix(in srgb, var(--color-dark) 92%, transparent) 45%, transparent);
+  color: var(--color-text-on-dark);
+}
+
+.name {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 600;
+  line-height: 1.15;
+}
+
+.scientific {
+  font-size: 0.8rem;
+  font-style: italic;
+  color: var(--color-text-on-dark-soft);
+}
+
+.card:hover .photo img,
+.card:focus-visible .photo img {
+  transform: scale(1.07);
+}
+
+.cta {
+  margin-top: clamp(3rem, 2.5rem + 2vw, 4rem);
+}
+
+@media (max-width: 64rem) {
+  .cards {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .item:nth-child(even) {
+    --offset: 0;
+  }
+}
+
+@media (max-width: 40rem) {
+  .cards {
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    grid-auto-columns: 68%;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    overscroll-behavior-x: contain;
+    margin-inline: calc(var(--gutter) * -1);
+    padding-inline: var(--gutter);
+    scroll-padding-inline: var(--gutter);
+    scrollbar-width: none;
+    /* Room for the focus ring, which the scroll container would otherwise clip. */
+    padding-block: 0.5rem;
+  }
+
+  .item {
+    scroll-snap-align: start;
+  }
+}

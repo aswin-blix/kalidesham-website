@@ -2,7 +2,7 @@ import { FieldGuide } from "@/components/FieldGuide";
 import { PageHero } from "@/components/PageHero";
 import { Photo, PhotoCredit } from "@/components/Photo";
 import { BulletList, NextPageLink, Prose, Section, Split } from "@/components/blocks";
-import { config } from "@/config";
+import { anchors, config } from "@/config";
 import { content } from "@/content";
 import { pageMetadata, requirePage } from "@/lib/page";
 import styles from "./wildlife.module.css";
@@ -22,7 +22,7 @@ export default function WildlifePage() {
   return (
     <>
       <PageHero page="wildlife" />
-      <Section id="guide" title={guide.title} intro={guide.intro}>
+      <Section id={anchors.fieldGuide} title={guide.title} intro={guide.intro}>
         <FieldGuide
           species={entries}
           label={guide.tabsLabel}

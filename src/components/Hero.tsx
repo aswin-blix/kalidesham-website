@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { config, href, isPageEnabled } from "@/config";
+import { anchors, config, href, isPageEnabled } from "@/config";
 import { content } from "@/content";
 import { HeroBackdrop } from "./HeroBackdrop";
 import { Photo, PhotoCredit } from "./Photo";
@@ -54,7 +54,7 @@ export function Hero() {
             </Link>
           )}
           {isPageEnabled("about") && (
-            <Link className="button button-quiet" href={`${href("about")}#journey`}>
+            <Link className="button button-quiet" href={`${href("about")}#${anchors.journey}`}>
               {home.secondaryCta}
             </Link>
           )}

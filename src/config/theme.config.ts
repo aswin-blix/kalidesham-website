@@ -79,6 +79,10 @@ export type ThemeConfig = {
     heroLetters: boolean;
     heroParallax: boolean;
     riverLine: boolean;
+    /** Home forest path: the path draws itself and stops rise in as you scroll. */
+    trail: boolean;
+    /** Home forest mosaic: smaller photos drift at different speeds as you scroll. */
+    mosaicDrift: boolean;
     fieldGuide: boolean;
     exploreHover: boolean;
     gallery: boolean;
@@ -137,6 +141,8 @@ export const theme: ThemeConfig = {
     heroLetters: true,
     heroParallax: true,
     riverLine: true,
+    trail: true,
+    mosaicDrift: true,
     fieldGuide: true,
     exploreHover: true,
     gallery: true,

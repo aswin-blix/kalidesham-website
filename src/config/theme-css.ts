@@ -83,6 +83,9 @@ export function contrastPairs(colors: ThemeConfig["colors"]) {
     { use: "button text on accent", fg: colors.onAccent, bg: colors.accent, min: 4.5 },
     { use: "button text on accent hover", fg: colors.onAccent, bg: colors.accentDeep, min: 4.5 },
     { use: "highlight headings and focus ring on dark", fg: colors.highlight, bg: colors.dark, min: 3 },
+    { use: "highlight links and numbers on dark (home forest)", fg: colors.highlight, bg: colors.dark, min: 4.5 },
+    { use: "signposts on raised dark panels", fg: colors.highlight, bg: colors.darkRaised, min: 4.5 },
+    { use: "text on highlight (trailhead, reached path markers)", fg: colors.text, bg: colors.highlight, min: 4.5 },
     { use: "focus ring on page", fg: colors.text, bg: colors.light, min: 3 },
   ];
 }

@@ -7,7 +7,13 @@ export type FeaturesConfig = {
   pages: Record<Exclude<PageKey, "home">, boolean>;
   home: {
     nameNote: boolean;
+    /** Dense-forest numbers and photo mosaic. */
+    forest: boolean;
     explore: boolean;
+    /** "trail": a winding forest path with a stop per page. "list": a compact index with a hover photo. */
+    exploreStyle: "trail" | "list";
+    /** Animal cards linking to the wildlife page (hidden when that page is off). */
+    wildlife: boolean;
     atAGlance: boolean;
   };
   /** Small "Photo: author, licence" line under each photo. If off, keep the credits page on (licence requirement). */
@@ -35,7 +41,10 @@ export const features: FeaturesConfig = {
   },
   home: {
     nameNote: true,
+    forest: true,
     explore: true,
+    exploreStyle: "trail",
+    wildlife: true,
     atAGlance: true,
   },
   inlinePhotoCredits: true,

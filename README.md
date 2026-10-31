@@ -8,7 +8,7 @@ Visitor website for **Kalikesam (காளிகேசம்)**, the Kali shrine
 
 | URL | Page | Highlights |
 | --- | --- | --- |
-| `/` | Home | Tamil name hero, what the name means, index of every page (photo preview follows the pointer), at-a-glance facts |
+| `/` | Home | Tamil name hero, what the name means, a dense-forest section (treeline edge, the sanctuary in numbers, photo mosaic), a winding forest path with a stop and photo for every page (GSAP draws it as you scroll), wildlife photo cards, at-a-glance facts over a photo |
 | `/about` | The place | Where it is, the road in (GSAP river line linking five stops), the forest around it |
 | `/temple` | Kali shrine & history | The shrine, visiting respectfully, timeline from the Kani to today |
 | `/wildlife` | Wildlife | Field guide with six animals (Framer Motion), species list, discoveries, wildlife etiquette |
@@ -43,23 +43,26 @@ Almost everything is set in typed files under `src/config/` and `src/content/`. 
 | Change colours | `src/config/theme.config.ts` → `colors` |
 | Change fonts | `theme.config.ts` → `fonts` (pick from `src/fonts/index.ts`) |
 | Change text sizes, page width, spacing, corner radius | `theme.config.ts` → `type`, `layout` |
-| Turn animations off, or speed them up or slow them down | `theme.config.ts` → `motion` (`enabled`, `speed`, and one switch per effect) |
+| Turn animations off, or speed them up or slow them down | `theme.config.ts` → `motion` (`enabled`, `speed`, and one switch per effect, e.g. `trail`, `mosaicDrift`) |
 | Change photo compression | `theme.config.ts` → `images` |
 | Change the name, local-script name, URL, phone, email, social links | `src/config/site.config.ts` |
-| Change booking links, opening hours, search keywords, schema type | `site.config.ts` → `links`, `openingHours`, `seo`, `schemaType` |
+| Change booking links, opening hours, page-title pattern, Twitter handle, schema type | `site.config.ts` → `links`, `openingHours`, `seo`, `schema` |
 | Hide a page, a home section, breadcrumbs, "Next" links, photo credits, structured data | `src/config/features.config.ts` |
+| Switch the home index between the forest path and a compact list | `features.config.ts` → `home.exploreStyle` (`"trail"` or `"list"`) |
+| Change the home forest numbers, mosaic photos or wildlife heading | `src/content/en/home.ts` → `forest`, `wildlife` (numbers must come from a cited source) |
 | Change the header links, header button, footer columns, reading order | `src/config/navigation.config.ts` |
 | Edit any text | `src/content/en/<page>.ts` (one file per page; `ui.ts` for interface wording) |
 | Change a page's title, menu label, search description or hero photo | `src/content/en/pages.ts` |
 | Add or swap a photo | `src/content/images.json`, then `npm run images` |
 | Add a font | Put the `.woff2` in `src/fonts/`, add an entry to `src/fonts/index.ts`, select it in `theme.config.ts` |
 | Change a page's URL | `src/config/routes.ts` **and** rename the matching folder in `src/app/` (a test checks they match) |
+| Rename a section that other pages link to (`#journey`, `#guide`) | `src/config/routes.ts` → `anchors` |
 
 Theme values become CSS variables (`--color-*`, `--font-*`, `--text-*`, `--page`, `--gutter`, `--section-y`, `--radius`, `--motion-speed`). Every stylesheet reads them, so a change applies site-wide. A unit test checks every text and background pairing against WCAG AA, so `npm test` tells you if a new colour is too faint to read.
 
 **Hiding a page** (`features.pages.gallery = false`) returns a 404 for its URL and removes it from the header, footer, home index, "Next" links, in-page links and the sitemap.
 
-**Photo credits** are required by the photos' Creative Commons licences. You can turn off the small inline credits, but then the credits page must stay on; the build enforces this.
+**Photo credits** are required by the photos' Creative Commons licences. You can turn off the small inline credits, but then the credits page must stay on. The credits page must also stay on while the home page shows its index or wildlife cards, whose photos carry no inline credit. The build enforces both.
 
 ### Adding a page
 
@@ -86,7 +89,7 @@ The content is already separated from the code. To add Tamil:
 | `npm run images` | Fetch missing photos (`-- --force` re-downloads all) |
 | `npm run lint` | ESLint (Next 16 removed `next lint`) |
 | `npm run typecheck` | Generate Next route types, then run TypeScript (no emit) |
-| `npm test` | Unit tests (Vitest): config validation, theme contrast, content integrity, image pipeline, river geometry |
+| `npm test` | Unit tests (Vitest): config validation, theme contrast, content integrity, image pipeline, river and treeline geometry |
 | `npm run test:e2e` | Browser tests (Playwright) against the production build |
 | `npm run check` | lint → typecheck → unit tests → build |
 
@@ -105,7 +108,7 @@ src/
     images.json          Photo manifest: Commons URL, alt text, author, licence, category
     images.ts            Typed access to the manifest
   components/            Shared components (header, footer, page hero, blocks, interactive islands)
-  lib/                   Page metadata helper, river geometry, lazy motion features
+  lib/                   Page metadata helper, river and treeline geometry, lazy motion features
   app/                   One folder per page, plus sitemap.ts and robots.ts
 tests/                   Vitest unit tests
 e2e/                     Playwright tests
@@ -117,6 +120,8 @@ e2e/                     Playwright tests
 | --- | --- | --- |
 | Hero letters rising, page titles fading in | CSS keyframes | No JavaScript; visible before hydration |
 | Hero parallax, header state, mobile menu | Framer Motion | `LazyMotion` + `m`; the animation engine loads on demand |
+| Home forest path drawing itself, stops lighting up | GSAP ScrollTrigger (same `RiverLine` component, `trail` style) | Imported only when the path is a quarter-screen away |
+| Forest path stops rising in, mosaic photos drifting | CSS scroll-driven animations (`animation-timeline: view()`) | No JavaScript; browsers without support show the static layout |
 | Field guide, gallery lightbox, home index preview | Framer Motion | Same lazy features |
 | River line on `/about` | GSAP ScrollTrigger | Imported only when the journey is a quarter-screen away |
 
@@ -140,6 +145,8 @@ Lighthouse on the production build:
 ## Deploying
 
 Works on Vercel or any Node host (`npm run build && npm start`). Set `NEXT_PUBLIC_SITE_URL` to the public URL (see `.env.example`). Canonical links, Open Graph URLs, structured data and the sitemap use it. Without it they are left out rather than pointing at localhost, and Next warns during the build. On Vercel, the production URL is picked up automatically.
+
+The step-by-step Vercel plan, including plan limits and decisions to make first, is in [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md). Current status and open items are in [docs/HANDOFF.md](docs/HANDOFF.md).
 
 ## Content accuracy
 

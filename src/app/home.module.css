@@ -14,3 +14,37 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* At a glance over a photo, darkened enough for the text to read. */
+.glanceSection {
+  position: relative;
+  overflow: hidden;
+}
+
+.glanceBackdrop {
+  position: absolute;
+  inset: 0;
+}
+
+.glanceBackdrop img {
+  object-fit: cover;
+}
+
+.glanceBackdrop::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to right, var(--color-dark) 30%, color-mix(in srgb, var(--color-dark) 55%, transparent)),
+    linear-gradient(to top, var(--color-dark), transparent 50%);
+}
+
+.glanceInner {
+  position: relative;
+}
+
+.glanceCredit {
+  position: absolute;
+  right: var(--gutter);
+  bottom: 0.75rem;
+}

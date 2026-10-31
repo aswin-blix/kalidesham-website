@@ -28,3 +28,15 @@
 .water[data-ready="true"] {
   opacity: 1;
 }
+
+/* Forest path on the home page: a dotted footpath, walked in turmeric as you scroll. */
+.river[data-variant="trail"] .bed {
+  stroke: color-mix(in srgb, var(--color-text-on-dark) 28%, transparent);
+  stroke-width: 3;
+  stroke-dasharray: 0.1 14;
+}
+
+.river[data-variant="trail"] .water {
+  stroke: var(--color-highlight);
+  stroke-width: 3;
+}

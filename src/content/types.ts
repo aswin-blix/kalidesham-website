@@ -89,8 +89,20 @@ export type Content = {
     primaryCta: string;
     secondaryCta: string;
     nameNote: { heading: string; lead: string; body: string; split: [string, string] };
-    explore: { title: string; intro: string };
-    glance: { title: string; facts: Fact[]; cta: string };
+    /** Dense-forest section: big numbers over a photo mosaic. Facts must be sourced (see about.ts). */
+    forest: { title: string; intro: string; stats: Fact[]; images: ImageId[] };
+    explore: {
+      title: string;
+      intro: string;
+      /** Marker at the top of the forest path (trail style). */
+      start: string;
+      /** Link text on each stop of the forest path. */
+      cta: string;
+      /** Marker at the bottom of the forest path. */
+      end: string;
+    };
+    wildlife: { title: string; intro: string; cta: string };
+    glance: { title: string; facts: Fact[]; cta: string; image?: ImageId };
   };
   about: {
     where: { title: string; body: Paragraphs; facts: Fact[] };

@@ -16,6 +16,7 @@ function referencedImageIds(): Set<string> {
     else if (value && typeof value === "object") {
       for (const [key, v] of Object.entries(value)) {
         if (["image", "heroImage", "thumbImage"].includes(key) && typeof v === "string") ids.add(v);
+        else if (key === "images" && Array.isArray(v)) v.forEach((id) => ids.add(id));
         else walk(v);
       }
     }
@@ -83,6 +84,22 @@ describe("content", () => {
       expect(page.title, key).toBeTruthy();
       expect(page.description.length, key).toBeGreaterThan(40);
       expect(page.description.length, `${key} description too long for search results`).toBeLessThanOrEqual(170);
+    }
+  });
+
+  it("fills the home forest mosaic with distinct photos and sourced numbers", () => {
+    const { images: mosaic, stats } = content.home.forest;
+    // The mosaic pattern has five tiles.
+    expect(mosaic.length).toBeGreaterThanOrEqual(5);
+    expect(new Set(mosaic).size).toBe(mosaic.length);
+    // Every number must already appear in the sourced about-page copy.
+    const about = JSON.stringify(content.about);
+    const words: Record<string, string> = { "14": "fourteen", "7": "seven" };
+    const escape = (text: string) => text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    for (const { value } of stats) {
+      const number = value.replace(/\s*(km²|mm)$/, "");
+      const pattern = [number, words[number]].filter(Boolean).map((t) => `\\b${escape(t!)}\\b`).join("|");
+      expect(about, value).toMatch(new RegExp(pattern, "i"));
     }
   });
 

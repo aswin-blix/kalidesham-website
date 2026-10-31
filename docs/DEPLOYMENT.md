@@ -55,32 +55,11 @@ npm run check          # lint → typecheck → unit tests → build
 npm run test:e2e       # needs: npx playwright install chromium
 ```
 
-Both must pass. Bump `package.json` to `0.2.0` to match CHANGELOG.md.
+Both must pass.
 
-### Step 2. First commit
+### Steps 2 and 3. Commit and push (done)
 
-The repository has no commits yet. Make sure these are included, because the Vercel build should not depend on Wikimedia:
-
-- `public/images/*.jpg` (28 photos)
-- `src/content/image-meta.json`
-- `src/app/opengraph-image.jpg` and `opengraph-image.alt.txt`
-
-`.env*` files are ignored, except `.env.example`. Then:
-
-```bash
-git add -A
-git status             # review: no .env, no .next, no node_modules
-git commit -m "Kalikesam visitor site 0.2.0"
-```
-
-### Step 3. Push to GitHub
-
-Create an empty repository on GitHub (no README, so histories don't clash), then:
-
-```bash
-git remote add origin https://github.com/<you>/<repo>.git
-git push -u origin main
-```
+The project is on GitHub at `aswin-blix/kalidesham-website`, branch `main`, with the photos, `image-meta.json` and the social card committed, so the Vercel build does not depend on Wikimedia. Before importing, run `git status` and `git push` so Vercel builds the latest commit.
 
 ### Step 4. Import into Vercel
 

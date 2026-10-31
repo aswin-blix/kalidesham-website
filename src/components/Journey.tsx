@@ -1,4 +1,4 @@
-import { config } from "@/config";
+import { anchors, config } from "@/config";
 import { content } from "@/content";
 import { Photo, PhotoCredit } from "./Photo";
 import { RiverLine } from "./RiverLine";
@@ -11,7 +11,7 @@ export function Journey() {
   const animated = motion.enabled && motion.riverLine;
 
   return (
-    <section id="journey" className="section section-dark" aria-labelledby="journey-title">
+    <section id={anchors.journey} className="section section-dark" aria-labelledby="journey-title">
       <div className="wrap">
         <header className="section-head">
           <h2 id="journey-title">{title}</h2>

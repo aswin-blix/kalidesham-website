@@ -7,11 +7,14 @@ import styles from "./RiverLine.module.css";
 type Geometry = { width: number; height: number; d: string };
 
 /**
- * The river that links the journey stops. It is measured from the stop markers,
- * drawn by GSAP as the reader scrolls, and lights each marker as it arrives.
- * GSAP is imported only when the journey nears the viewport, so it never weighs on first load.
+ * The line that links a route's stops: the river on /about, the forest path on the home page.
+ * It is measured from the stop markers, drawn by GSAP as the reader scrolls, and lights each
+ * marker as it arrives. GSAP is imported only when the route nears the viewport, so it never
+ * weighs on first load.
+ *
+ * Markup contract: an ancestor with `data-river-route` containing elements with `data-river-marker`.
  */
-export function RiverLine({ animated = true }: { animated?: boolean }) {
+export function RiverLine({ animated = true, variant = "river" }: { animated?: boolean; variant?: "river" | "trail" }) {
   const svgRef = useRef<SVGSVGElement>(null);
   const drawnRef = useRef<SVGPathElement>(null);
   const [geometry, setGeometry] = useState<Geometry | null>(null);
@@ -30,7 +33,9 @@ export function RiverLine({ animated = true }: { animated?: boolean }) {
         return { x: r.left - box.left + r.width / 2, y: r.top - box.top + r.height / 2 };
       });
       const narrow = box.width < 56 * 16 * 0.9;
-      const amplitude = narrow ? 10 : Math.min(90, box.width * 0.07);
+      // A footpath winds more than the river does.
+      const swing = variant === "trail" ? { max: 150, share: 0.11 } : { max: 90, share: 0.07 };
+      const amplitude = narrow ? 10 : Math.min(swing.max, box.width * swing.share);
       const next = { width: box.width, height: box.height, d: buildRiverPath(points, 0, box.height, amplitude) };
       // Keep the same object when nothing moved, so GSAP is not torn down and rebuilt needlessly.
       setGeometry((prev) =>
@@ -38,11 +43,12 @@ export function RiverLine({ animated = true }: { animated?: boolean }) {
       );
     };
 
-    measure();
+    // ResizeObserver reports once after the first layout, so there is no separate initial
+    // measurement: reading positions during hydration would force a layout of the whole page.
     const observer = new ResizeObserver(measure);
     observer.observe(route);
     return () => observer.disconnect();
-  }, []);
+  }, [variant]);
 
   // Scroll-driven drawing. Re-runs when the path changes (e.g. on resize).
   useEffect(() => {
@@ -125,6 +131,7 @@ export function RiverLine({ animated = true }: { animated?: boolean }) {
     <svg
       ref={svgRef}
       className={styles.river}
+      data-variant={variant}
       width={geometry?.width ?? 0}
       height={geometry?.height ?? 0}
       viewBox={geometry ? `0 0 ${geometry.width} ${geometry.height}` : undefined}

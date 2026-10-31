@@ -2,6 +2,16 @@
 
 ## Unreleased
 
+- Home page redesigned to feel like walking into the forest:
+  - A treeline edge leads into a dense-forest section with the sanctuary in numbers (area, forest types, rivers, rainfall, all from cited sources) and a five-photo mosaic whose smaller photos drift as you scroll.
+  - "Explore Kalikesam" is now a winding forest path: a numbered stop with a photo for every page, signposts where the path enters Discover, Experience and Plan, and the path drawn by GSAP as you scroll (the river line from `/about`, in a new `trail` style). The previous compact list is still available with `features.home.exploreStyle = "list"`.
+  - Wildlife photo cards linking to the field guide, and "At a glance" over a photo.
+  - New switches: `features.home.forest`, `exploreStyle`, `wildlife`; `theme.motion.trail`, `mosaicDrift`.
+- The river line no longer measures the page during hydration; it waits for the first layout.
+- Section ids that other pages link to (`#journey`, `#guide`) now live in `routes.ts` → `anchors`.
+- The build now requires the credits page while the home page shows uncredited photos (index, wildlife cards).
+- Reduced motion: the hero opening no longer waits for the first animation frame at zero opacity.
+- Tests: treeline geometry (including the true top of every crown), signpost groups, forest numbers traced to the about-page copy, the credits-page rule, the forest path drawing and lighting its stops, clicking a stop's photo, wildlife cards reaching the field guide. New e2e tests skip themselves when their feature is switched off. Three new colour pairs in the contrast test.
 - Docs: `docs/HANDOFF.md` (status, decisions, open items, how to resume) and `docs/DEPLOYMENT.md` (Vercel plan). README's customisation table now names the real `site.config.ts` keys (`seo`, `schema`).
 
 ## 0.2.0 (2026-10-31)

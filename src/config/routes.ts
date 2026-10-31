@@ -18,4 +18,12 @@ export const routes = {
 
 export type PageKey = keyof typeof routes;
 
+/** Section ids that other pages link to. Change them here so links and targets stay in step. */
+export const anchors = {
+  /** The road-in journey on /about (home hero button). */
+  journey: "journey",
+  /** The field guide on /wildlife (home wildlife cards). */
+  fieldGuide: "guide",
+} as const;
+
 export const pageKeys = Object.keys(routes) as PageKey[];
