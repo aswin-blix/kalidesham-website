@@ -1,0 +1,107 @@
+.hero {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: flex-end;
+  min-height: 22rem;
+  padding-top: var(--header-height);
+  background: var(--color-dark);
+  color: var(--color-text-on-dark);
+  overflow: hidden;
+}
+
+.hero[data-has-photo] {
+  min-height: max(28rem, 72svh);
+}
+
+.photo {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+
+.photo img {
+  object-fit: cover;
+}
+
+.photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      to top,
+      color-mix(in srgb, var(--color-dark) 94%, transparent) 0%,
+      color-mix(in srgb, var(--color-dark) 50%, transparent) 45%,
+      transparent 75%
+    ),
+    linear-gradient(to bottom, color-mix(in srgb, var(--color-dark) 60%, transparent), transparent 25%);
+}
+
+.content {
+  padding-block: 2.5rem clamp(2.5rem, 2rem + 3vw, 4.5rem);
+}
+
+.crumbs ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  list-style: none;
+  font-size: var(--text-small);
+  color: var(--color-text-on-dark-soft);
+  margin-bottom: 1.25rem;
+}
+
+.crumbs li + li::before {
+  content: "/";
+  margin-right: 0.4rem;
+  opacity: 0.6;
+}
+
+.local {
+  font-family: var(--font-display);
+  font-size: var(--text-h3);
+  font-weight: 600;
+  color: var(--color-highlight);
+  margin-bottom: 0.35rem;
+}
+
+.title {
+  font-size: var(--text-h1);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  max-width: 18ch;
+  animation: rise calc(800ms * var(--motion-speed)) var(--ease-out) both;
+}
+
+.intro {
+  margin-top: 1rem;
+  max-width: 38rem;
+  font-size: var(--text-lead);
+  line-height: 1.5;
+  animation: rise calc(800ms * var(--motion-speed)) var(--ease-out) calc(120ms * var(--motion-speed)) both;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(0.6rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.credit {
+  position: absolute;
+  right: var(--gutter);
+  bottom: 0.75rem;
+}
+
+@media (max-width: 40rem) {
+  .credit {
+    left: var(--gutter);
+    right: auto;
+  }
+}

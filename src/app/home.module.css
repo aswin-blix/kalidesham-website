@@ -1,0 +1,16 @@
+.glance {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: clamp(2rem, 1rem + 4vw, 5rem);
+  align-items: end;
+}
+
+.glance > :global(.button) {
+  justify-self: start;
+}
+
+@media (max-width: 48rem) {
+  .glance {
+    grid-template-columns: 1fr;
+  }
+}

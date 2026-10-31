@@ -1,0 +1,142 @@
+{
+  "hero-stream": {
+    "width": 1920,
+    "height": 1440,
+    "blurDataURL": "data:image/webp;base64,UklGRmYAAABXRUJQVlA4IFoAAAAQAgCdASoQAAwAA4BaJZQCdADp15dZGkQAAP6JSjv0UaOMsZyW4A0KKQjvuhqmcxR4LBG/gi9LHnt+nN9byTXsRIlhopKMe/zgLfgBb94vxVpEXOTcjx13AAA="
+  },
+  "eco-camp": {
+    "width": 1920,
+    "height": 892,
+    "blurDataURL": "data:image/webp;base64,UklGRlgAAABXRUJQVlA4IEwAAADwAQCdASoQAAcAA4BaJbACdAEVwz+QpgAA/VOHl7yeVCmmP0s6SW1/C+5MS2cfMmqG29eK1xHqWJ2IJ87PIkz4M8M+gyL1RTF4gAAA"
+  },
+  "river-shallows": {
+    "width": 1080,
+    "height": 2400,
+    "blurDataURL": "data:image/webp;base64,UklGRk4AAABXRUJQVlA4IEIAAAAQAgCdASoHABAAA4BaJYwCdAD0fn5sh7X8APqeNtqZLF6WzuLwLqBRk9YtURf/LQQ0R25qh+hXQJjAw4svZWOAAAA="
+  },
+  "temple": {
+    "width": 1350,
+    "height": 2400,
+    "blurDataURL": "data:image/webp;base64,UklGRlIAAABXRUJQVlA4IEYAAACwAQCdASoJABAAA4BaJQBOgBsjZ1IAAPfaXPPzx6HYAADyuTHRm0ovz9nYSqTtpHMvyK1tI8qLrfnC6UwGdQiAA8muAAAA"
+  },
+  "wayside-shrine": {
+    "width": 1920,
+    "height": 1440,
+    "blurDataURL": "data:image/webp;base64,UklGRnQAAABXRUJQVlA4IGgAAADwAQCdASoQAAwAA4BaJZACsADdnJwCVMAA/buPWrI37LWRTl6sYZ3YUcW0urREcWNNjJSolcebMaOJ3XE8jWamjJc5LEtI6TA1dlIHGgNtNuJKf8xs4n1qneOWA+gyQKNiOK9UFSAAAA=="
+  },
+  "keeriparai-hills": {
+    "width": 1920,
+    "height": 1080,
+    "blurDataURL": "data:image/webp;base64,UklGRk4AAABXRUJQVlA4IEIAAADQAQCdASoQAAkAA4BaJQBOgCG0PJqUsAD+4avdTAoptFraR6FfRcHnJQq5ng5OBvN4PmwiUUQmlwZBfqzEXOmwAAA="
+  },
+  "forest-stream": {
+    "width": 1920,
+    "height": 1440,
+    "blurDataURL": "data:image/webp;base64,UklGRlgAAABXRUJQVlA4IEwAAACwAQCdASoQAAwAA4BaJQBOgBZJIRWAAP7OygebDZ/xAq6g+TfXjIQdydjXZwW14FgTXDylTs3ciJNny6gNLIOu2eoecDhjwQjEEEgA"
+  },
+  "karumparai-falls": {
+    "width": 1800,
+    "height": 2400,
+    "blurDataURL": "data:image/webp;base64,UklGRlwAAABXRUJQVlA4IFAAAACwAQCdASoMABAAA4BaJZwAAsaSp1kAAP7sEUY1JK6Fue5LFozvydTFABLk8bBPcdQ6VHDgv/sGVkZuMVSv0SsuKJ6WDcMTYdW2zE3Ph9/IAA=="
+  },
+  "vattaparai-falls": {
+    "width": 1920,
+    "height": 1661,
+    "blurDataURL": "data:image/webp;base64,UklGRm4AAABXRUJQVlA4IGIAAADQAQCdASoQAA4AA4BaJYwC7AB13/MgwAD+0pNadjo6MzzM5bwo4QzzcWHAG8chT+/aLGZmMnZOibKkseb6m7D7DPivJF52mfxE/OhGH+ufFbIb1eYX2A8MI1zBmL6ngN8AAA=="
+  },
+  "pechiparai": {
+    "width": 1920,
+    "height": 1080,
+    "blurDataURL": "data:image/webp;base64,UklGRkoAAABXRUJQVlA4ID4AAADQAQCdASoQAAkAA4BaJbACdAEOZ349AAD+1z6qzkebSLhbysqlXV25dD6Bse9O6rb0bciygfr7lgrk3AAAAA=="
+  },
+  "moonrise": {
+    "width": 1920,
+    "height": 1080,
+    "blurDataURL": "data:image/webp;base64,UklGRj4AAABXRUJQVlA4IDIAAADwAQCdASoQAAkAA4BaJYwCdAD5i3T2V2AA9ketY9q4XFipZ2qOeolMTVHCmq+IIYAAAA=="
+  },
+  "kani-lamp-dance": {
+    "width": 1200,
+    "height": 1600,
+    "blurDataURL": "data:image/webp;base64,UklGRl4AAABXRUJQVlA4IFIAAADwAQCdASoMABAAA4BaJZgCdADdI9sB3IAA/vhWYaACg1QnyN0AcjPmyEguHRiYRBXdwxDzFYg87uZs0s/ktjCp9qsfnuEPtmNYgsDQk94M9MgA"
+  },
+  "kanikar-archive": {
+    "width": 380,
+    "height": 562,
+    "blurDataURL": "data:image/webp;base64,UklGRmIAAABXRUJQVlA4IFYAAAAQAgCdASoLABAAA4BaJQBOgB9x4IHxIFwAAP7qowjVbJutvBxjwEqhfl9YKhdyO29XCbuZksYy5zuRLCYQi5kTEBjLusSObiYqrsNc4VSR1H+TqY2gAA=="
+  },
+  "lion-tailed-macaque": {
+    "width": 1920,
+    "height": 1440,
+    "blurDataURL": "data:image/webp;base64,UklGRnoAAABXRUJQVlA4IG4AAABQAgCdASoQAAwAA4BaJbAC7AYuvqoPTbonIlgA/uHOHkTRxRs1U27rH/cGnRyfp1RMohZ+v9thjXBGyv4d9uznDoWUnTTq4B047CwcLO9tYPgySYj2LTOxAfrB+qz7aEirM3PkHJ1GsHsRucAAAA=="
+  },
+  "travancore-tortoise": {
+    "width": 1920,
+    "height": 1280,
+    "blurDataURL": "data:image/webp;base64,UklGRlIAAABXRUJQVlA4IEYAAADwAQCdASoQAAsAA4BaJZACdADQ8ZkRoAAA/qZxQDHRRQtMBrwpuZ5ETmK0JRCSgbWmTsdqB0rIgnCNQ3A4fe6OpMO5BgAA"
+  },
+  "giant-squirrel": {
+    "width": 1920,
+    "height": 1169,
+    "blurDataURL": "data:image/webp;base64,UklGRlgAAABXRUJQVlA4IEwAAABQAgCdASoQAAoAA4BaJYwCsAEQZ0tYQLwvnwAA/n1ogSBXmXr7YzbSy6FS44Y8vG1Qk8aZ2ZnEgKLUmHSIGRuH7juHuY5cghshiAAA"
+  },
+  "gaur": {
+    "width": 1600,
+    "height": 1067,
+    "blurDataURL": "data:image/webp;base64,UklGRlwAAABXRUJQVlA4IFAAAACwAQCdASoQAAsAA4BaJQAAWMXHhYWgAP6lUNDkE2ghPmonV5b/I7IUxd7aaAZVglY+XO/gwldsMdlajMV/1/UKxGEhBxaErAY4dXbf5rQAAA=="
+  },
+  "southern-birdwing": {
+    "width": 1621,
+    "height": 1056,
+    "blurDataURL": "data:image/webp;base64,UklGRl4AAABXRUJQVlA4IFIAAADQAQCdASoQAAoAA4BaJZAC7ADQJiz2AAD+6QORQvwNjfiF08nJ4TNY8Nty0wqHbYsh48Vb5eGKXmaGBJmPJoxp3O7RznwbgDy0I9XPCOBLQAAA"
+  },
+  "coracle": {
+    "width": 1920,
+    "height": 1278,
+    "blurDataURL": "data:image/webp;base64,UklGRk4AAABXRUJQVlA4IEIAAADwAQCdASoQAAsAA4BaJYwCw7EO07SyqAAA/uxXnrsZbi7gQ4DANXlPw9xUG+sLU6ao4oVa43YSNCNyQOGHCymAAAA="
+  },
+  "temple-shrine": {
+    "width": 1082,
+    "height": 2400,
+    "blurDataURL": "data:image/webp;base64,UklGRkoAAABXRUJQVlA4ID4AAAAQAgCdASoHABAAA4BaJYwCdADdjg14qteAAM36UyBxnhPhjyTIwRbKwDcMhgdhpk4IL6htulE6t1izhLPQAA=="
+  },
+  "temple-hall": {
+    "width": 1082,
+    "height": 2400,
+    "blurDataURL": "data:image/webp;base64,UklGRkQAAABXRUJQVlA4IDgAAADwAQCdASoHABAAA4BaJQBOgB6Mds8zawAA+omlaKatjbuLYLFCNu3NYUf7T2OIhVeGtd36MeAAAA=="
+  },
+  "river-bathers": {
+    "width": 1080,
+    "height": 2400,
+    "blurDataURL": "data:image/webp;base64,UklGRlIAAABXRUJQVlA4IEYAAAAQAgCdASoHABAAA4BaJZQCdH8AGBw9mF4AAPqbkofO86i0DK3ZcUbLi3ZECUaieIGgaRmQO6J88fW516jH29MLipTUoSAA"
+  },
+  "river-gate": {
+    "width": 1082,
+    "height": 2400,
+    "blurDataURL": "data:image/webp;base64,UklGRlIAAABXRUJQVlA4IEYAAACwAQCdASoHABAAA4BaJZQCdAEO4oMwAP7Q/rKMl+A6ItFBBcF5HSYym4tnN/HErR4AvYHh4q0RXLorgBk4521YjSILVSAA"
+  },
+  "river-wide": {
+    "width": 1080,
+    "height": 2400,
+    "blurDataURL": "data:image/webp;base64,UklGRkQAAABXRUJQVlA4IDgAAADwAQCdASoHABAAA4BaJQBdgB6SDjSgiAAA+ptV0/BMSEsd6L8g6toTOf3l/MJkgw7LZalo+kXAAA=="
+  },
+  "black-rock-cascade": {
+    "width": 1800,
+    "height": 2400,
+    "blurDataURL": "data:image/webp;base64,UklGRmoAAABXRUJQVlA4IF4AAADwAQCdASoMABAAA4BaJYwC7AYvDZyFKQAA4BgGYbRQfxJXrFmR9zQi0rT9H+3lI2O4jv/3lfYHVLw+1/ZyCV2s21/rVs9CZgBsaJoLcR1TM5fyH5HyI1nfeQeGoAAA"
+  },
+  "thirparappu-falls": {
+    "width": 1920,
+    "height": 1080,
+    "blurDataURL": "data:image/webp;base64,UklGRmAAAABXRUJQVlA4IFQAAADwAQCdASoQAAkAA4BaJQBOgBk/BWZzZqgA+Xlgq7DXydYSm7MrTHKNzQQRaPNjCTqzZH+IXR7dL8B7upeklsR3TktsniGtZFE4XDid03G2c+TIAAA="
+  },
+  "thirunanthikarai-cave": {
+    "width": 1920,
+    "height": 1277,
+    "blurDataURL": "data:image/webp;base64,UklGRkoAAABXRUJQVlA4ID4AAADwAQCdASoQAAsAA4BaJagCdAEQWyJdcwAA/OzH84JqtYFuaCvk5E8As0PgsBF0ff+OfOZt3Fw2udL88yQAAA=="
+  },
+  "elephant": {
+    "width": 1920,
+    "height": 1497,
+    "blurDataURL": "data:image/webp;base64,UklGRn4AAABXRUJQVlA4IHIAAAAwAgCdASoQAAwAA4BaJbACw7YxFLkxlm3UAAD7y4tIk9JggM25VqfdjMdjD6HUL5uKCvq/FD1Hii5thIBs1APNCjQnsstJWzNDBxsNg7E1UhAf723ro5xhEvQf86MpZ69VbPZeJ5bSxIL1unM2w3oAAAA="
+  }
+}

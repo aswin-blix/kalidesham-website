@@ -1,0 +1,141 @@
+.route {
+  position: relative;
+}
+
+.stops {
+  position: relative;
+  list-style: none;
+  display: grid;
+  gap: clamp(4rem, 3rem + 6vw, 8rem);
+}
+
+/* Desktop: text | river | photo, alternating sides. */
+.stop {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 7rem minmax(0, 1fr);
+  grid-template-areas: "text marker figure";
+  align-items: center;
+}
+
+.stop[data-side="right"] {
+  grid-template-areas: "figure marker text";
+}
+
+.marker {
+  grid-area: marker;
+  justify-self: center;
+  position: relative;
+  z-index: 1;
+  width: 1.15rem;
+  height: 1.15rem;
+  border-radius: 50%;
+  background: var(--color-dark);
+  border: 2px solid var(--color-primary);
+  transition:
+    background-color 300ms ease,
+    border-color 300ms ease,
+    transform 300ms var(--ease-out);
+}
+
+.marker[data-reached="true"],
+.route[data-static] .marker {
+  background: var(--color-primary-light);
+  border-color: var(--color-primary-light);
+  transform: scale(1.25);
+}
+
+.stop[data-sacred] .marker {
+  border-color: var(--color-accent);
+}
+
+.stop[data-sacred] .marker[data-reached="true"],
+.route[data-static] .stop[data-sacred] .marker {
+  background: var(--color-accent);
+  border-color: var(--color-highlight);
+  box-shadow: 0 0 0 6px color-mix(in srgb, var(--color-accent) 25%, transparent);
+}
+
+.text {
+  grid-area: text;
+  max-width: 28rem;
+}
+
+.stop[data-side="left"] .text {
+  justify-self: end;
+}
+
+.count {
+  font-size: var(--text-small);
+  color: var(--color-primary-light);
+  margin-bottom: 0.6rem;
+}
+
+.text h3 {
+  font-size: var(--text-h2);
+  margin-bottom: 1rem;
+}
+
+.stop[data-sacred] .text h3 {
+  color: var(--color-highlight);
+}
+
+.text p:last-child {
+  color: var(--color-text-on-dark-soft);
+}
+
+.figure {
+  grid-area: figure;
+  margin: 0;
+}
+
+.frame {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: var(--color-dark-raised);
+}
+
+.stop[data-side="left"] .frame {
+  aspect-ratio: 4 / 3;
+}
+
+.frame img {
+  object-fit: cover;
+}
+
+.figure figcaption {
+  margin-top: 0.5rem;
+}
+
+.stop[data-sacred] .frame {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 6px;
+}
+
+/* Mobile: river runs down the left edge. */
+@media (max-width: 56rem) {
+  .stop,
+  .stop[data-side="right"] {
+    grid-template-columns: 2.25rem minmax(0, 1fr);
+    grid-template-areas:
+      "marker text"
+      ". figure";
+    align-items: start;
+    row-gap: 1.25rem;
+  }
+
+  .marker {
+    margin-top: 0.35rem;
+  }
+
+  .stop[data-side="left"] .text {
+    justify-self: start;
+  }
+
+  .frame,
+  .stop[data-side="left"] .frame {
+    aspect-ratio: 4 / 3;
+  }
+}

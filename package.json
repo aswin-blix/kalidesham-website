@@ -1,0 +1,39 @@
+{
+  "name": "kalikesam",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "images": "node scripts/fetch-images.mjs",
+    "predev": "node scripts/fetch-images.mjs",
+    "dev": "next dev",
+    "prebuild": "node scripts/fetch-images.mjs",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "typecheck": "next typegen && tsc --noEmit",
+    "test": "vitest run",
+    "test:e2e": "playwright test",
+    "check": "npm run lint && npm run typecheck && npm test && npm run build"
+  },
+  "dependencies": {
+    "framer-motion": "^14.9.0",
+    "gsap": "^3.15.0",
+    "next": "16.4.3",
+    "react": "19.3.0",
+    "react-dom": "19.3.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.63.0",
+    "@types/node": "^22.20.5",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.4.3",
+    "sharp": "^0.35.5",
+    "typescript": "^5",
+    "vitest": "^5.0.5"
+  },
+  "engines": {
+    "node": ">=20.9.0"
+  }
+}

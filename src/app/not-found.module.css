@@ -1,0 +1,20 @@
+.wrap {
+  min-height: 80svh;
+  display: flex;
+  align-items: center;
+  padding-block: calc(var(--header-height) + 3rem) 4rem;
+  background: var(--color-dark);
+  color: var(--color-text-on-dark);
+}
+
+.wrap h1 {
+  font-size: var(--text-h1);
+  max-width: 18ch;
+}
+
+.wrap p {
+  margin-block: 1rem 2rem;
+  max-width: var(--measure);
+  font-size: var(--text-lead);
+  color: var(--color-text-on-dark-soft);
+}

@@ -1,0 +1,125 @@
+.list {
+  --preview-width: clamp(11rem, 8rem + 8vw, 17rem);
+  position: relative;
+  list-style: none;
+  border-top: 2px solid var(--color-dark);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr) var(--preview-width);
+  grid-template-areas: "label description .";
+  align-items: baseline;
+  gap: 1.5rem;
+  padding: clamp(1.1rem, 0.8rem + 1vw, 1.6rem) 0;
+  border-bottom: 1px solid var(--color-light-deep);
+  text-decoration: none;
+}
+
+.label {
+  grid-area: label;
+  font-family: var(--font-display);
+  font-size: var(--text-h2);
+  font-weight: 600;
+  line-height: 1.1;
+  transition:
+    color 200ms ease,
+    transform 300ms var(--ease-out);
+}
+
+.description {
+  grid-area: description;
+  color: var(--color-text-soft);
+  max-width: 30rem;
+}
+
+.row:hover .label,
+.row[data-active="true"] .label {
+  color: var(--color-primary-text);
+  transform: translateX(0.4rem);
+}
+
+.thumb {
+  display: none;
+}
+
+/* Preview in the right-hand column, gliding up and down with the pointer. */
+.preview {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: var(--preview-width);
+  aspect-ratio: 4 / 5;
+  margin-top: calc(var(--preview-width) * -0.625);
+  border-radius: var(--radius);
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 200ms ease;
+  box-shadow: 0 1.5rem 3rem -1rem color-mix(in srgb, var(--color-dark) 45%, transparent);
+}
+
+.preview[data-visible="true"] {
+  opacity: 1;
+}
+
+.previewPhoto {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 220ms ease;
+}
+
+.previewPhoto[data-active="true"] {
+  opacity: 1;
+}
+
+.previewPhoto img {
+  object-fit: cover;
+}
+
+/* Preview switched off in the theme: two text columns on wide screens. */
+.wrap[data-preview="off"] .row {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  grid-template-areas: "label description";
+}
+
+/* Touch or narrow screens: inline thumbnails instead of the floating preview. */
+@media (hover: none), (max-width: 56rem) {
+  .preview {
+    display: none;
+  }
+
+  .row,
+  .wrap[data-preview="off"] .row {
+    grid-template-columns: 5rem minmax(0, 1fr);
+    grid-template-areas:
+      "thumb label"
+      "thumb description";
+    align-items: center;
+    gap: 0.25rem 1rem;
+  }
+
+  .thumb {
+    grid-area: thumb;
+    position: relative;
+    display: block;
+    width: 5rem;
+    aspect-ratio: 1;
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: var(--color-light-deep);
+  }
+
+  .thumb img {
+    object-fit: cover;
+  }
+
+  .label {
+    font-size: var(--text-h3);
+  }
+
+  .description {
+    font-size: var(--text-small);
+  }
+}

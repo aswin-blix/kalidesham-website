@@ -1,0 +1,95 @@
+import type { Content } from "../types";
+
+/** Menu labels, headings, search snippets and hero photos for every page. */
+export const pages: Content["pages"] = {
+  home: {
+    navLabel: "Home",
+    title: "Kalikesam",
+    metaTitle: "Kalikesam | Forest river and Kali shrine, Kanyakumari",
+    description:
+      "Visitor guide to Kalikesam: a Kali shrine on a clear forest river in Kanyakumari Wildlife Sanctuary, Tamil Nadu. Timings, fees, treks, wildlife and history.",
+    heroImage: "hero-stream",
+  },
+  about: {
+    navLabel: "About",
+    title: "The place",
+    metaTitle: "About Kalikesam",
+    description: "Where Kalikesam is, what its name means, and the forest road that ends at its river.",
+    intro: "A river, a Kali shrine and the end of a forest road, deep in the foothills of the Western Ghats.",
+    heroImage: "eco-camp",
+  },
+  temple: {
+    navLabel: "Temple & history",
+    title: "The Kali shrine",
+    metaTitle: "Kali temple and history",
+    description: "The Kali temple that gives Kalikesam its name, how to visit it respectfully, and the history of these hills.",
+    intro: "The road ends where the shrine stands: on the riverbank, under the trees.",
+    heroImage: "temple-shrine",
+    localTitle: "காளியம்மன் கோவில்",
+  },
+  wildlife: {
+    navLabel: "Wildlife",
+    title: "Who else lives here",
+    metaTitle: "Wildlife",
+    description: "Lion-tailed macaques, gaur, elephants and the Travancore tortoise: wildlife of Kanyakumari Wildlife Sanctuary.",
+    intro: "The sanctuary covers about 402 km² of forest. Most animals keep out of sight, but go quietly, early, and with a guide.",
+    heroImage: "lion-tailed-macaque",
+  },
+  people: {
+    navLabel: "The Kani",
+    title: "The Kani people",
+    metaTitle: "The Kani people",
+    description: "The Kani, the forest people of the Kanyakumari hills: their homes, their knowledge of plants, and how to visit respectfully.",
+    intro: "Long before the sanctuary, the check post or the rubber estates, these hills were home to the Kani.",
+    heroImage: "keeriparai-hills",
+  },
+  thingsToDo: {
+    navLabel: "Things to do",
+    title: "Things to do",
+    description: "Coracle rides, river paddling, nature walks, bird and butterfly watching, and cycling at Kalikesam.",
+    intro: "Kalikesam is a place for slow days: water, walking and watching.",
+    heroImage: "coracle",
+  },
+  trek: {
+    navLabel: "Maramalai trek",
+    title: "Kalikesam to Maramalai",
+    metaTitle: "Kalikesam to Maramalai trek",
+    description: "A guided 12 km forest trek from Kalikesam to the old clove estate at Maramalai: route, grade, what to bring and how to book.",
+    intro: "A guided day through evergreen forest to an old clove estate, run by the Tamil Nadu Forest Department.",
+    heroImage: "forest-stream",
+  },
+  nearby: {
+    navLabel: "Nearby",
+    title: "Around Kalikesam",
+    metaTitle: "Places near Kalikesam",
+    description: "Waterfalls, a 9th-century cave temple and a Travancore-era reservoir within an easy drive of Kalikesam.",
+    intro: "More falls, an ancient cave temple and a reservoir under the hills, all within an easy drive.",
+    heroImage: "thirparappu-falls",
+  },
+  visit: {
+    navLabel: "Plan your visit",
+    title: "Plan your visit",
+    description: "Kalikesam opening hours, entry fees, how to get there by car, bus or train, when to go, and the rules inside the sanctuary.",
+    intro: "Everything you need before you drive in: hours, fees, routes and the rules of the forest.",
+    heroImage: "moonrise",
+  },
+  faq: {
+    navLabel: "FAQ",
+    title: "Questions visitors ask",
+    metaTitle: "Frequently asked questions",
+    description: "Answers to common questions about visiting Kalikesam: timings, fees, bathing, food, buses and staying overnight.",
+    thumbImage: "river-bathers",
+  },
+  gallery: {
+    navLabel: "Gallery",
+    title: "Gallery",
+    description: "Photographs of Kalikesam, its river and shrine, the surrounding falls and the wildlife of the sanctuary.",
+    intro: "The river, the shrine, the hills around them and the animals that share them.",
+    thumbImage: "river-wide",
+  },
+  credits: {
+    navLabel: "Photo credits",
+    title: "Photo credits",
+    description: "Authors and licences for every photograph used on this site.",
+  },
+};

@@ -1,0 +1,58 @@
+.list {
+  max-width: 48rem;
+  border-top: 2px solid var(--color-dark);
+}
+
+.item {
+  border-bottom: 1px solid var(--color-light-deep);
+}
+
+.item summary {
+  position: relative;
+  display: block;
+  padding: 1.25rem 2.5rem 1.25rem 0;
+  font-family: var(--font-display);
+  font-size: var(--text-lead);
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none;
+}
+
+.item summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Plus that turns into a minus when open. */
+.item summary::before,
+.item summary::after {
+  content: "";
+  position: absolute;
+  right: 0.25rem;
+  top: 50%;
+  width: 1rem;
+  height: 2px;
+  background: var(--color-primary);
+  transition: transform calc(250ms * var(--motion-speed)) var(--ease-out);
+}
+
+.item summary::after {
+  transform: rotate(90deg);
+}
+
+.item[open] summary::after {
+  transform: rotate(0deg);
+}
+
+.answer {
+  display: grid;
+  gap: 0.6rem;
+  justify-items: start;
+  padding-bottom: 1.5rem;
+  max-width: var(--measure);
+  color: var(--color-text-soft);
+}
+
+.answer a {
+  font-weight: 600;
+  color: var(--color-primary-text);
+}

@@ -1,0 +1,140 @@
+.hero {
+  position: relative;
+  isolation: isolate;
+  min-height: max(36rem, 100svh);
+  display: flex;
+  align-items: flex-end;
+  color: var(--color-text-on-dark);
+  background: var(--color-dark);
+  overflow: hidden;
+}
+
+.backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+
+.backdropInner {
+  position: absolute;
+  inset: 0;
+  will-change: transform;
+}
+
+.backdropInner img {
+  object-fit: cover;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .backdropInner {
+    transform: none !important;
+  }
+}
+
+:global(:root[data-motion="off"]) .backdropInner {
+  transform: none !important;
+}
+
+/* Darken the lower half so the type always reads, whatever the photo. */
+.backdrop::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      to top,
+      color-mix(in srgb, var(--color-dark) 95%, transparent) 0%,
+      color-mix(in srgb, var(--color-dark) 55%, transparent) 38%,
+      transparent 70%
+    ),
+    linear-gradient(to bottom, color-mix(in srgb, var(--color-dark) 55%, transparent), transparent 22%);
+}
+
+.content {
+  padding-block: 7rem clamp(3rem, 2rem + 4vw, 5.5rem);
+}
+
+.title {
+  display: grid;
+  font-weight: 700;
+}
+
+.local {
+  display: block;
+  font-size: var(--text-hero);
+  line-height: 1.05;
+  color: var(--color-light);
+  letter-spacing: -0.01em;
+  /* Long Tamil words must never overflow on small phones. */
+  overflow-wrap: anywhere;
+}
+
+.local > span[aria-hidden] {
+  display: inline-block;
+  animation: rise calc(1100ms * var(--motion-speed)) var(--ease-out) both;
+  animation-delay: calc((var(--i) * 90ms + 120ms) * var(--motion-speed));
+}
+
+.hero[data-letters="off"] .local > span[aria-hidden] {
+  animation: none;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(0.35em);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.latin {
+  display: block;
+  margin-top: 0.4rem;
+  font-size: var(--text-h2);
+  font-weight: 500;
+  color: var(--color-highlight);
+  animation: fade calc(900ms * var(--motion-speed)) var(--ease-out) calc(700ms * var(--motion-speed)) both;
+}
+
+.summary {
+  margin-top: 1.25rem;
+  max-width: 34rem;
+  font-size: var(--text-lead);
+  line-height: 1.5;
+  color: var(--color-text-on-dark);
+  animation: fade calc(900ms * var(--motion-speed)) var(--ease-out) calc(850ms * var(--motion-speed)) both;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 2rem;
+  animation: fade calc(900ms * var(--motion-speed)) var(--ease-out) calc(1000ms * var(--motion-speed)) both;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.credit {
+  position: absolute;
+  right: var(--gutter);
+  bottom: 0.9rem;
+  margin: 0;
+}
+
+@media (max-width: 40rem) {
+  .credit {
+    left: var(--gutter);
+    right: auto;
+  }
+}

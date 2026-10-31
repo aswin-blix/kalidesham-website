@@ -1,0 +1,133 @@
+.guide {
+  display: grid;
+  grid-template-columns: minmax(14rem, 0.8fr) minmax(0, 2fr);
+  gap: clamp(1.5rem, 1rem + 3vw, 4rem);
+  align-items: start;
+}
+
+.list {
+  display: grid;
+  border-top: 1px solid var(--color-light-deep);
+}
+
+.tab {
+  position: relative;
+  display: grid;
+  gap: 0.1rem;
+  padding: 1rem 0 1rem 1.25rem;
+  border: 0;
+  border-bottom: 1px solid var(--color-light-deep);
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  color: var(--color-text-soft);
+  transition: color 160ms ease;
+}
+
+.tab:hover,
+.tab[aria-selected="true"] {
+  color: var(--color-text);
+}
+
+.tabName {
+  font-family: var(--font-display);
+  font-size: var(--text-lead);
+  font-weight: 600;
+}
+
+.tabLatin {
+  font-size: var(--text-small);
+  font-style: italic;
+}
+
+/* Selected marker: grows from the centre when an animal is chosen. */
+.tab::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.9rem;
+  bottom: 0.9rem;
+  width: 4px;
+  border-radius: 2px;
+  background: var(--color-primary);
+  transform: scaleY(0);
+  transition: transform 260ms var(--ease-out);
+}
+
+.tab[aria-selected="true"]::before {
+  transform: scaleY(1);
+}
+
+.panel {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.frame {
+  position: relative;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: var(--color-light-deep);
+}
+
+.photo {
+  position: absolute;
+  inset: 0;
+}
+
+.photo img {
+  object-fit: cover;
+}
+
+.copy {
+  max-width: var(--measure);
+}
+
+.copy h3 {
+  font-size: var(--text-h2);
+  margin-bottom: 0.75rem;
+}
+
+.copy p:not(:global(.credit)) {
+  color: var(--color-text-soft);
+  margin-bottom: 0.75rem;
+}
+
+@media (max-width: 56rem) {
+  .guide {
+    grid-template-columns: 1fr;
+  }
+
+  /* Animals become a swipeable row of chips above the photo. */
+  .list {
+    grid-auto-flow: column;
+    grid-auto-columns: max-content;
+    overflow-x: auto;
+    border-top: 0;
+    gap: 0.5rem;
+    padding-bottom: 0.25rem;
+    scrollbar-width: none;
+  }
+
+  .tab {
+    padding: 0.55rem 1rem;
+    border: 1px solid var(--color-light-deep);
+    border-radius: 999px;
+  }
+
+  .tab[aria-selected="true"] {
+    background: var(--color-dark);
+    border-color: var(--color-dark);
+    color: var(--color-text-on-dark);
+  }
+
+  .tabName {
+    font-size: var(--text-base);
+  }
+
+  .tabLatin,
+  .tab::before {
+    display: none;
+  }
+}

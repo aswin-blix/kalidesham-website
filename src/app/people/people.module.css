@@ -1,0 +1,12 @@
+.side {
+  display: grid;
+  gap: 2rem;
+}
+
+.archive {
+  max-width: 13rem;
+}
+
+.archive img {
+  filter: sepia(0.25);
+}

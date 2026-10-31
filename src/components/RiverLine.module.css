@@ -1,0 +1,30 @@
+.river {
+  position: absolute;
+  inset: 0 auto auto 0;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.bed,
+.water {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* The riverbed shows the whole route; the water is drawn over it on scroll. */
+.bed {
+  stroke: var(--color-dark-line);
+  stroke-width: 10;
+}
+
+.water {
+  stroke: var(--color-primary-light);
+  stroke-width: 4;
+  opacity: 0;
+}
+
+/* Hidden until GSAP has set the dash offset, so it never flashes fully drawn. */
+.water[data-ready="true"] {
+  opacity: 1;
+}

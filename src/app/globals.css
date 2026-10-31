@@ -1,0 +1,232 @@
+/* Colours, fonts, type scale, spacing and motion speed are generated from
+   src/config/theme.config.ts (see components/ThemeStyle.tsx). This file only
+   holds structural styles that read those variables. */
+:root {
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-padding-top: var(--header-height);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html:not([data-motion="off"]) {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--color-light);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: var(--line-height);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.1;
+  margin: 0;
+  text-wrap: balance;
+}
+
+p {
+  margin: 0;
+  text-wrap: pretty;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-underline-offset: 0.2em;
+  text-decoration-thickness: 1px;
+}
+
+a:hover {
+  text-decoration-thickness: 2px;
+}
+
+:focus-visible {
+  outline: 3px solid var(--focus-ring, var(--color-text));
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  z-index: 100;
+  padding: 0.6rem 1rem;
+  background: var(--color-highlight);
+  color: var(--color-text);
+  font-weight: 600;
+  border-radius: var(--radius);
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* Shared layout helpers */
+.wrap {
+  width: min(100% - 2 * var(--gutter), var(--page));
+  margin-inline: auto;
+}
+
+.section {
+  padding-block: var(--section-y);
+}
+
+/* Below-the-fold sections skip layout and paint until they approach the viewport.
+   Anchor jumps still land correctly (covered by an e2e test); `auto` remembers each
+   section's real size once it has rendered. */
+.defer-render {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 1200px;
+}
+
+.section-dark {
+  background: var(--color-dark);
+  color: var(--color-text-on-dark);
+}
+
+/* Turmeric focus ring wherever the surface is dark (ink would vanish there). */
+.section-dark,
+.on-dark {
+  --focus-ring: var(--color-highlight);
+}
+
+.section-head {
+  max-width: 44rem;
+  margin-bottom: clamp(2.5rem, 2rem + 3vw, 4.5rem);
+}
+
+.section-head h2 {
+  font-size: var(--text-h1);
+  letter-spacing: -0.01em;
+}
+
+.section-head p {
+  margin-top: 1.1rem;
+  font-size: var(--text-lead);
+  line-height: 1.5;
+  max-width: var(--measure);
+  color: var(--color-text-soft);
+}
+
+.section-dark .section-head p {
+  color: var(--color-text-on-dark-soft);
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 3rem;
+  padding: 0.7rem 1.4rem;
+  border-radius: 999px;
+  font-weight: 600;
+  text-decoration: none;
+  transition:
+    background-color 160ms ease,
+    color 160ms ease,
+    border-color 160ms ease;
+}
+
+.button-primary {
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+}
+
+.button-primary:hover {
+  background: var(--color-accent-deep);
+}
+
+.button-quiet {
+  border: 1px solid currentColor;
+}
+
+.button-quiet:hover {
+  background: color-mix(in srgb, currentColor 12%, transparent);
+}
+
+.credit {
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: var(--color-text-soft);
+}
+
+.section-dark .credit,
+.on-dark .credit {
+  color: var(--color-text-on-dark-soft);
+}
+
+.credit a {
+  text-decoration: none;
+}
+
+.credit a:hover {
+  text-decoration: underline;
+}
+
+/* Visitors who ask for less motion, or theme.motion.enabled = false, get none. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-delay: 0s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
+  }
+}
+
+:root[data-motion="off"] *,
+:root[data-motion="off"] *::before,
+:root[data-motion="off"] *::after {
+  animation-duration: 1ms !important;
+  animation-delay: 0s !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 1ms !important;
+}

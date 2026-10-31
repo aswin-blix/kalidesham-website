@@ -1,0 +1,21 @@
+// Every page on the site and its URL. The URL must match the folder under
+// src/app (for example "/things-to-do" is src/app/things-to-do/page.tsx), so
+// renaming a URL means renaming that folder too.
+export const routes = {
+  home: "/",
+  about: "/about",
+  temple: "/temple",
+  wildlife: "/wildlife",
+  people: "/people",
+  thingsToDo: "/things-to-do",
+  trek: "/trek",
+  nearby: "/nearby",
+  visit: "/visit",
+  faq: "/faq",
+  gallery: "/gallery",
+  credits: "/credits",
+} as const;
+
+export type PageKey = keyof typeof routes;
+
+export const pageKeys = Object.keys(routes) as PageKey[];

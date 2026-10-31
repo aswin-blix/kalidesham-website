@@ -1,0 +1,150 @@
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: clamp(1.5rem, 1rem + 2vw, 2.5rem);
+}
+
+.chip {
+  min-height: 2.5rem;
+  padding: 0.4rem 1.1rem;
+  border: 1px solid var(--color-light-deep);
+  border-radius: 999px;
+  background: transparent;
+  cursor: pointer;
+  font-weight: 600;
+  transition:
+    background-color 160ms ease,
+    color 160ms ease;
+}
+
+.chip:hover {
+  border-color: var(--color-text-soft);
+}
+
+.chip[aria-pressed="true"] {
+  background: var(--color-dark);
+  border-color: var(--color-dark);
+  color: var(--color-text-on-dark);
+}
+
+/* Masonry with CSS columns: photos keep their own shapes. */
+.grid {
+  list-style: none;
+  columns: 3 16rem;
+  column-gap: 0.75rem;
+}
+
+.cell {
+  break-inside: avoid;
+  margin-bottom: 0.75rem;
+}
+
+.open {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--color-light-deep);
+  cursor: zoom-in;
+}
+
+.open img {
+  width: 100%;
+  height: auto;
+  /* Very tall phone photos would dominate a column; crop them to a sensible height. */
+  max-height: 26rem;
+  object-fit: cover;
+  transition: transform calc(500ms * var(--motion-speed)) var(--ease-out);
+}
+
+.open:hover img {
+  transform: scale(1.02);
+}
+
+.dialog {
+  width: min(100vw - 2rem, 80rem);
+  max-width: none;
+  max-height: calc(100svh - 2rem);
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius);
+  background: var(--color-dark);
+  color: var(--color-text-on-dark);
+  --focus-ring: var(--color-highlight);
+}
+
+.dialog::backdrop {
+  background: color-mix(in srgb, var(--color-dark) 88%, black);
+}
+
+.viewer {
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  height: min(calc(100svh - 2rem), 56rem);
+}
+
+.stage {
+  position: relative;
+  overflow: hidden;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+}
+
+.slide img {
+  object-fit: contain;
+}
+
+.bar {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.9rem 1.25rem;
+  border-top: 1px solid var(--color-dark-line);
+}
+
+.title {
+  font-weight: 600;
+}
+
+.counter {
+  font-size: var(--text-small);
+  color: var(--color-text-on-dark-soft);
+}
+
+.controls {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.controls button {
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+  padding: 0 0.9rem;
+  border: 1px solid var(--color-dark-line);
+  border-radius: 999px;
+  background: transparent;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.controls button:hover {
+  background: var(--color-dark-raised);
+}
+
+@media (max-width: 40rem) {
+  .bar {
+    grid-template-columns: 1fr auto;
+  }
+
+  .controls {
+    grid-column: 1 / -1;
+    justify-content: space-between;
+  }
+}
